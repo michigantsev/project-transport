@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>AddModel</h2>
+<form method="post">
+    <p>
+        <label for="br">Марка</label>
+        <select id="br" name="br" class="ab">
+            <option> </option>
+            @foreach (Prakitka2021v3.Models.Brands b in ViewBag.Brands)
+            {
+                if (b.BrandID == ViewBag.Br)
+                {
+                    <option selected="selected" value="@b.BrandID">@b.Brand</option>
+                }
+                else
+                {
+                    <option value="@b.BrandID">@b.Brand</option>
+                }
+            }
+        </select>
+    </p>
+    <p>
+        <label for="name">Название модели</label><input id="name" name="name" class="ab" type="text" size="40">
+    </p>
+    <p>
+        <label for="carBody">Кузов</label>
+        <select id="carBody" name="carBody" class="ab">
+            <option value="3">-</option>
+            <option value="1">Sedan</option>
+            <option value="2">Hatchback</option>
+        </select>
+    </p>
+    <p>
+        <label for="type">Вид транспорта</label>
+        <select id="type" name="type" class="ab">
+            <option value="Moto">Moto</option>
+            <option value="Auto">Auto</option>
+        </select>
+    </p>
+    <button type="submit">создать</button>
+</form>

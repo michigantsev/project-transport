@@ -1,0 +1,47 @@
+﻿@model Prakitka2021v3.Models.Cars
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit2</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CarID)
+    <p>
+        Название <br />
+        @Html.EditorFor(model => model.VehicleConfiguration)
+    </p>
+
+    <p>
+        Объем <br />
+        @Html.EditorFor(model => model.EngineCapacity)
+    </p>
+    <p>
+        Мощность  <br />
+        @Html.EditorFor(model => model.EnginePower)
+    </p>
+    <p>
+        Цена  <br />
+        <input id="price" name="price" type="text" size="40">
+    </p>
+    <p>
+        КПП  <br />
+        @Html.DropDownListFor(model => model.GearBox, ViewBag.Box as SelectList);
+    </p>
+    <p>
+        Салон  <br />
+        @Html.DropDownListFor(model => model.Prices.FirstOrDefault().Companies.CompanyName, ViewBag.Companies as SelectList);
+    </p>
+    <p>
+        Марка  <br />
+        @Html.DropDownListFor(model => model.Models.Brands.BrandID, ViewBag.Brands as SelectList)
+    </p>
+    <p>
+        Модель  <br />
+        @Html.DropDownListFor(model => model.ModelID, ViewBag.Models as SelectList)
+        @Html.HiddenFor(model => model.Models)
+    </p>
+    <p>
+        <input type="submit" value="Сохранить изменения" />
+    </p>
+}

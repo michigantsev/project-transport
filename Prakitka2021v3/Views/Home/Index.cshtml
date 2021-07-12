@@ -1,0 +1,222 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+       
+    <div>
+        <h3>Выбор машин</h3>
+        <form method="post" action="/Home/LoadModelsIndex">
+            <select id="br" name="br" class="cb1" onchange="this.form.submit()">
+                <option> </option>
+                @foreach (Prakitka2021v3.Models.Brands b in ViewBag.Brands)
+                {
+                    if (b.BrandID == ViewBag.Br)
+                    {
+                        <option selected="selected" value="@b.BrandID">@b.Brand</option>
+                    }
+                    else
+                    {
+                        <option value="@b.BrandID">@b.Brand</option>
+                    }
+                }
+            </select>
+            <select id="mo" name="mo" class="cb2" onchange="this.form.submit()">
+                <option> </option>
+                @foreach (Prakitka2021v3.Models.Models b in ViewBag.Models)
+                {
+                    if (b.BrandID == ViewBag.Br)
+                    {
+                        if (b.ModellD == ViewBag.Mo)
+                        {
+                            <option selected="selected" value="@b.ModellD">@b.Model</option>
+                        }
+                        else
+                        {
+                            <option value="@b.ModellD">@b.Model</option>
+                        }
+                    }
+                }
+            </select>
+        </form>
+        <form method="post">
+            <label for="eCapacityMin" class="ab3">Объем двигателя</label><input id="eCapacityMin" name="eCapacityMin" class="ab2" type="text" size="10" onkeyup='saveValue(this);'>
+            <input id="eCapacityMax" name="eCapacityMax" class="ab4" type="text" size="10" onkeyup='saveValue(this);'>
+            <label for="ePowerMin" class="ab6">Мощность двигателя</label><input id="ePowerMin" name="ePowerMin" class="ab5" type="text" size="10" onkeyup='saveValue(this);'>
+            <input id="ePowerMax" name="ePowerMax" class="ab7" type="text" size="10" onkeyup='saveValue(this);'>
+            <label for="priceMin" class="ab9">Цена</label><input id="priceMin" name="priceMin" class="ab8" type="text" size="10" onkeyup='saveValue(this);'>
+            <input id="priceMax" name="priceMax" class="ab0" type="text" size="10" onkeyup='saveValue(this);'>
+            <label for="box" class="ab12">КПП</label>
+            <select id="box" name="box" class="ab11">
+                <option value=""> </option>
+                <option value="-">-</option>
+                <option value="AT">AT</option>
+                <option value="MT">MT</option>
+            </select>
+            <label for="carBody" class="ab14">Кузов</label>
+            <select id="carBody" name="carBody" class="ab13">
+                <option value="-1"> </option>
+                <option value="3">-</option>
+                <option value="1">Sedan</option>
+                <option value="2">Hatchback</option>
+            </select>
+            <label for="type" class="ab16">Вид транспорта</label>
+            <select id="type" name="type" class="ab15">
+                <option value=""> </option>
+                <option value="Moto">Moto</option>
+                <option value="Auto">Auto</option>
+            </select>
+            <label for="city" class="ab18">Город</label>
+            <select id="city" name="city" class="ab17">
+                <option value="-1"> </option>
+                <option value="1">Пермь</option>
+                <option value="2">Москва</option>
+                <option value="3">Санкт-Петербург</option>
+            </select>
+            <button type="submit" class="ab19">Применить фильтры</button>
+        </form>
+        <script>
+			document.getElementById('box').value = '@ViewBag.Box';
+			document.getElementById('carBody').value = '@ViewBag.CarBody';
+			document.getElementById('type').value = '@ViewBag.Type';
+            document.getElementById('city').value = '@ViewBag.City';
+            document.getElementById("eCapacityMin").value = getSavedValue("eCapacityMin");
+			document.getElementById("eCapacityMax").value = getSavedValue("eCapacityMax");
+            document.getElementById("ePowerMin").value = getSavedValue("ePowerMin");
+			document.getElementById("ePowerMax").value = getSavedValue("ePowerMax");
+            document.getElementById("priceMin").value = getSavedValue("priceMin");
+			document.getElementById("priceMax").value = getSavedValue("priceMax");
+
+            function saveValue(e) {
+            var id = e.id;
+            var val = e.value;
+            localStorage.setItem(id, val);
+            }
+
+            function getSavedValue(v) {
+            if (localStorage.getItem(v) === null) {
+            return "";
+            }
+            return localStorage.getItem(v);
+			}
+        </script>
+        <script src="~/Scripts/table2excel.js"></script>
+        <button id="excel">Сохранить отчет в Excel</button>
+        <br></br>
+        <table class="tablica" id="tbl" runat="server">
+            <tr class="header">
+                <td class="zt"><p>Название</p></td>
+                <td class="zt"><p>Объем</p></td>
+                <td class="zt"><p>Мощность</p></td>
+                <td class="zt"><p>КПП</p></td>
+                <td class="zt"><p>Модель</p></td>
+                <td class="zt"><p>Марка</p></td>
+                <td class="zt"><p>Цена</p></td>
+                <td class="zt"><p>О салоне</p></td>
+                <td></td>
+            </tr>
+            @if (ViewBag.Mo != 0 && ViewBag.Br != 0)
+            {
+                foreach (Prakitka2021v3.Models.Cars b in ViewBag.Cars)
+                {
+                    if (b.ModelID == ViewBag.Mo && b.Models.BrandID == ViewBag.Br)
+                    {
+                        <tr>
+                            <td class="yt"><p>@b.VehicleConfiguration</p></td>
+                            <td class="yt"><p>@b.EngineCapacity</p></td>
+                            <td class="yt"><p>@b.EnginePower</p></td>
+                            <td class="yt"><p>@b.GearBox</p></td>
+                            <td class="yt"><p>@b.Models.Model</p></td>
+                            <td class="yt"><p>@b.Models.Brands.Brand</p></td>
+                            @foreach (Prakitka2021v3.Models.Prices p in ViewBag.Prices)
+                            {
+                                if (p.CarID == b.CarID)
+                                {
+                                    <td class="yt"><p>@p.Price</p></td>
+                                    break;
+                                }
+                            }
+                            <td class="yt"><p>@Html.ActionLink("Подробно", "Comp", new { id = b.CarID })</p></td>
+                            <td class="yt">
+                                <p>
+                                    @Html.ActionLink("Редактировать", "Edit2", new { id = b.CarID }) |
+                                    @Html.ActionLink("Удалить", "Delete", new { id = b.CarID })
+                                </p>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            else if (ViewBag.Br == 0)
+            {
+                foreach (Prakitka2021v3.Models.Cars b in ViewBag.Cars)
+                {
+                    <tr>
+                        <td class="yt"><p>@b.VehicleConfiguration</p></td>
+                        <td class="yt"><p>@b.EngineCapacity</p></td>
+                        <td class="yt"><p>@b.EnginePower</p></td>
+                        <td class="yt"><p>@b.GearBox</p></td>
+                        <td class="yt"><p>@b.Models.Model</p></td>
+                        <td class="yt"><p>@b.Models.Brands.Brand</p></td>
+                        @foreach (Prakitka2021v3.Models.Prices p in ViewBag.Prices)
+                        {
+                            if (p.CarID == b.CarID)
+                            {
+                                <td class="yt"><p>@p.Price</p></td>
+                                break;
+                            }
+                        }
+                        <td class="yt"><p>@Html.ActionLink("Подробно", "Comp", new { id = b.CarID })</p></td>
+                        <td class="yt">
+                            <p>
+                                @Html.ActionLink("Редактировать", "Edit2", new { id = b.CarID }) |
+                                @Html.ActionLink("Удалить", "Delete", new { id = b.CarID })
+                            </p>
+                        </td>
+                    </tr>
+                }
+            }
+            else if (ViewBag.Mo == 0)
+            {
+                foreach (Prakitka2021v3.Models.Cars b in ViewBag.Cars)
+                {
+                    if (b.Models.BrandID == ViewBag.Br)
+                    {
+                        <tr>
+                            <td class="yt"><p>@b.VehicleConfiguration</p></td>
+                            <td class="yt"><p>@b.EngineCapacity</p></td>
+                            <td class="yt"><p>@b.EnginePower</p></td>
+                            <td class="yt"><p>@b.GearBox</p></td>
+                            <td class="yt"><p>@b.Models.Model</p></td>
+                            <td class="yt"><p>@b.Models.Brands.Brand</p></td>
+                            @foreach (Prakitka2021v3.Models.Prices p in ViewBag.Prices)
+                            {
+                                if (p.CarID == b.CarID)
+                                {
+                                    <td class="yt"><p>@p.Price</p></td>
+                                    break;
+                                }
+                            }
+                            <td class="yt"><p>@Html.ActionLink("Подробно", "Comp", new { id = b.CarID })</p></td>
+                            <td class="yt">
+                                <p>
+                                    @Html.ActionLink("Редактировать", "Edit2", new { id = b.CarID }) |
+                                    @Html.ActionLink("Удалить", "Delete", new { id = b.CarID })
+                                </p>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+        <script>
+            document.getElementById('excel').addEventListener('click', function () {
+                var table2excel = new Table2Excel();
+                table2excel.export(document.querySelectorAll("#tbl"));
+            })
+        </script>
+        <div class="dws">
+            <a href="/Home/AddCar" class="btn">Добавить транспорт</a>
+            <a href="/Home/AddBrand" class="btn">Добавить марку</a>
+            <a href="/Home/AddModel" class="btn">Добавить модель</a>
+            <a href="/Home/AddCompany" class="btn">Добавить салон</a>
+        </div>
+    </div>

@@ -1,0 +1,118 @@
+﻿@model Prakitka2021v3.Models.Cars
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<form method="post" action="LoadModelsEdit">
+    <select id="br" name="br" class="cb1" onchange="this.form.submit()">
+        <option> </option>
+        @foreach (Prakitka2021v3.Models.Brands b in ViewBag.Brands)
+		{
+			if (b.BrandID == Model.Models.BrandID)
+			{
+                <option selected="selected" value="@b.BrandID">@b.Brand</option>
+			}
+			else
+			{
+                <option value="@b.BrandID">@b.Brand</option>
+            }
+        }
+    </select>
+    <select id="mo" name="mo" class="cb2" onchange="this.form.submit()">
+        <option> </option>
+        @foreach (Prakitka2021v3.Models.Models b in ViewBag.Models)
+        {
+            if (b.BrandID == Model.Models.BrandID)
+            {
+                if (b.ModellD == Model.ModelID)
+                {
+                    <option selected="selected" value="@b.ModellD">@b.Model</option>
+                }
+                else
+                {
+                    <option value="@b.ModellD">@b.Model</option>
+                }
+            }
+        }
+    </select>
+</form>
+<form method="post">
+    <p>
+        <label for="tb1">Комлектация</label><input id="config" name="config" class="ab" type="text" size="40" value="@Model.VehicleConfiguration">
+    </p>
+    <p>
+        <label for="tb2">Объем двигателя</label><input id="eCapacity" name="eCapacity" class="ab" type="text" size="40" value="@Model.EngineCapacity">
+    </p>
+    <p>
+        <label for="tb3">Мощность двигателя</label><input id="ePower" name="ePower" class="ab" type="text" size="40" value="@Model.EnginePower">
+    </p>
+    <p>
+        <label for="tb4">Цена</label><input id="price" name="price" class="ab" type="text" size="40" value="@ViewBag.Price">
+    </p>
+    <p>
+        <label for="company">Салон</label>
+        <select id="company" name="company" class="ab">
+            <option> </option>
+            @foreach (Prakitka2021v3.Models.Companies b in ViewBag.Companies)
+            {
+                if (b.CompanyID == ViewBag.Company)
+                {
+                    <option selected="selected" value="@b.CompanyID">@b.CompanyName</option>
+                }
+                else
+                {
+                    <option value="@b.CompanyID">@b.CompanyName</option>
+                }
+            }
+        </select>
+    </p>
+    <p>
+        <label for="box">КПП</label>
+        <select id="box" name="box" class="ab">
+            @if (Model.GearBox == "-")
+            {
+                <option selected="selected" value="-">-</option>
+            }
+            else
+            {
+                <option value="-">-</option>
+            }
+            @if (Model.GearBox == "AT")
+            {
+                <option selected="selected" value="AT">AT</option>
+            }
+            else
+            {
+                <option value="AT">AT</option>
+            }
+            @if (Model.GearBox == "MT")
+            {
+                <option selected="selected" value="MT">MT</option>
+            }
+            {
+                <option value="MT">MT</option>
+            }
+        </select>
+    </p>
+    <button type="submit" value="@Model.CarID" name="id" id="id">Изменить</button>
+</form>
+<script>
+   //         document.getElementById("config").value = getSavedValue("config");
+			//document.getElementById("eCapacity").value = getSavedValue("eCapacity");
+   //         document.getElementById("ePower").value = getSavedValue("ePower");
+			//document.getElementById("price").value = getSavedValue("price");
+
+   //         function saveValue(e) {
+   //         var id = e.id;
+   //         var val = e.value;
+   //         localStorage.setItem(id, val);
+   //         }
+
+   //         function getSavedValue(v) {
+   //         if (localStorage.getItem(v) === null) {
+   //         return "";
+   //         }
+   //         return localStorage.getItem(v);
+			//}
+</script>

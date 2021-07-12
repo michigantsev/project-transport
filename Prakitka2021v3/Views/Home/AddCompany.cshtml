@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddCompany</h2>
+<form method="post">
+    <p>
+        <label for="name">Название</label><input id="name" name="name" class="ab" type="text" size="40">
+    </p>
+    <p>
+        <label for="address">Адрес</label><input id="name" name="name" class="ab" type="text" size="40">
+    </p>
+    <p>
+        <label for="contact">Телефон</label><input id="name" name="name" class="ab" type="text" size="40">
+    </p>
+    <p>
+        <label for="city">Город</label>
+        <select id="city" name="city" class="ab">
+            <option value="1">Пермь</option>
+            <option value="2">Москва</option>
+            <option value="3">Санкт-Петербург</option>
+        </select>
+    </p>
+    <button type="submit">создать</button>
+</form>

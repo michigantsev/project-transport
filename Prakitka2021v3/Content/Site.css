@@ -1,0 +1,208 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    float: left;   
+}
+.btn {
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #8C959D; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 3px; /* Скругляем уголки */
+}
+.dws button {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */    
+}
+.dws button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+.dws:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.dws button:hover {
+    background-color: #3e8e41;
+}
+
+.butt {
+    border: 3px solid #218294;
+    font-size: 30px;
+    color: #218294;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 250px;
+    height: 60px;
+    display: block;
+    text-align: center;
+    line-height: 60px;
+}
+.tablica {
+    font-family: sen-serif;
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ece9e0;
+    color: #656665;
+    border: 16px solid #ece9e0;
+    border-radius: 20px;
+}
+.zt {
+    font-size:18px;
+    padding: 10px;
+}
+
+.yt {
+    background: #f5d7bf;
+    padding: 10px;
+}
+
+.cb1 {
+    position: absolute;
+    left: 75%;
+}
+.cb2 {
+    position: absolute;
+    left: 90%;
+}
+.ab {
+    position: absolute;
+    left: 60%;
+}
+.ab2 {
+    position: absolute;
+    left: 80%;
+    top: 20%;
+}
+.ab3 {
+    position: absolute;
+    left: 71%;
+    top: 20%;
+}
+.ab4 {
+    position: absolute;
+    left: 90%;
+    top: 20%;
+}
+.ab5 {
+    position: absolute;
+    left: 80%;
+    top: 25%;
+}
+
+.ab6 {
+    position: absolute;
+    left: 71%;
+    top: 25%;
+}
+
+.ab7 {
+    position: absolute;
+    left: 90%;
+    top: 25%;
+}
+.ab8 {
+    position: absolute;
+    left: 80%;
+    top: 30%;
+}
+
+.ab9 {
+    position: absolute;
+    left: 71%;
+    top: 30%;
+}
+
+.ab0 {
+    position: absolute;
+    left: 90%;
+    top: 30%;
+}
+.ab11 {
+    position: absolute;
+    left: 80%;
+    top: 35%;
+}
+
+.ab12 {
+    position: absolute;
+    left: 71%;
+    top: 35%;
+}
+.ab13 {
+    position: absolute;
+    left: 80%;
+    top: 50%;
+}
+
+.ab14 {
+    position: absolute;
+    left: 71%;
+    top: 50%;
+}
+.ab15 {
+    position: absolute;
+    left: 80%;
+    top: 40%;
+}
+
+.ab16 {
+    position: absolute;
+    left: 71%;
+    top: 40%;
+}
+.ab17 {
+    position: absolute;
+    left: 80%;
+    top: 45%;
+}
+
+.ab18 {
+    position: absolute;
+    left: 71%;
+    top: 45%;
+}
+.ab19 {
+    position: absolute;
+    left: 71%;
+    top: 55%;
+}
